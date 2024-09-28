@@ -42,6 +42,7 @@ const login = () => {
     return (
         <View style={styleGeneral.container}>
             <View style={[styleGeneral.safeContainer, {flexDirection:'column'}]}>
+                <Image source={require('@/assets/images/logo.png')} style={{width:70, height:70, marginTop:60, marginBottom:20}}/>
                 <Text style={[styleGeneral.title]}>Welcome back!</Text>
                 <Text style={[styleGeneral.subTitle, {marginBottom:20}]}>Sign in to continue.</Text>
                 <TextInput style={[styleGeneral.textField, {marginTop:20}]} autoCapitalize='none' placeholder='Email' value={emailAddress} onChangeText={setEmailAddress} placeholderTextColor={Colors.almostWhite}/>

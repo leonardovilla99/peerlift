@@ -76,6 +76,7 @@ const register = () => {
         <View style={styleGeneral.container}>
             <View style={styleGeneral.safeContainer}>
                 {!pendingVerification && (<>
+                    <Image source={require('@/assets/images/logo.png')} style={{width:70, height:70, marginTop:60, marginBottom:20}}/>
                     <Text style={[styleGeneral.title]}>Join us!</Text>
                     <Text style={[styleGeneral.subTitle, {marginBottom:20}]}>Sign up to continue.</Text>
                     <TextInput style={[styleGeneral.textField, {marginTop:20}]} autoCapitalize='none' placeholder='Email' value={emailAddress} onChangeText={setEmailAddress} placeholderTextColor={Colors.almostWhite}/>
@@ -85,19 +86,24 @@ const register = () => {
                         <TouchableOpacity style={styleGeneral.botton} onPress={onSignUpPress}>
                             <Text style={[styleGeneral.bottonText]}>REGISTER</Text>
                         </TouchableOpacity>
-                        <Text style={[styleGeneral.textGrey]}>Already have an account? <Link href="/(modal)/login"> Sign in</Link></Text>
+                        <Text style={[styleGeneral.textGrey]}>Already have an account? <Link href="/(modal)/login" style={{color:Colors.yellow}}> Sign in</Link></Text>
                     </View>
                 </>)}
                 {pendingVerification && (<>
-					<View>
+					<View style={{marginTop: 40}}>
 						<TextInput
 							value={code}
 							placeholder="Code..."
+                            placeholderTextColor={Colors.almostWhite}
 							onChangeText={setCode}
-                            style={{color: Colors.yellow}}
+                            style={{
+                                color: Colors.yellow
+                            }}
 						/>
 					</View>
-					<Button onPress={onPressVerify} title="Verify Email" color={Colors.yellow}></Button>
+                    <TouchableOpacity style={styleGeneral.botton} onPress={onPressVerify}>
+                        <Text style={[styleGeneral.bottonText]}>VERIFY EMAIL</Text>
+                    </TouchableOpacity>
 				</>)}
             </View>
         </View>

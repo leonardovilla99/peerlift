@@ -53,7 +53,6 @@ const account = () => {
                     )}
                     {user?.firstName == null && (
                         <View style={{flexDirection:'column', width:'90%'}}>
-                            <Image source={{uri: user?.imageUrl}} style={styleGeneral.avatar}/>
                             <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>Me.</Text>
                         </View>
                     )}
