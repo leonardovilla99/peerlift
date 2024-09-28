@@ -1,4 +1,4 @@
-import { SplashScreen, Stack, router } from 'expo-router';
+import { SplashScreen, Stack, router, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
@@ -35,7 +35,7 @@ export const unstable_settings = {
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-// SplashScreen.preventAutoHideAsync();
+//SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   return (
@@ -50,21 +50,18 @@ export default function RootLayout() {
 
 function RootLayoutNav() {
   const {isLoaded,isSignedIn} = useAuth();
+  const routerNav = useRouter();
   
   useEffect(() => {
-    if (isLoaded && !SignedIn) {
-        // Hide splash screen once loaded
-        // SplashScreen.hideAsync();
-        if (!isSignedIn) {
-            router.push("/(modal)/login");
-        } else {
-            router.push("/(tabs)/home");
-        }
+    if(isLoaded && !isSignedIn){
+        router.push("/(modal)/login")
+    }else{
+        router.push("/(tabs)/home")
     }
-  }, [isLoaded, isSignedIn]);
+  }, [isLoaded])
 
   return (
-    <Stack initialRouteName='home'>
+    <Stack>
         <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
         <Stack.Screen name="(modal)/login" options={{
             presentation: 'modal',

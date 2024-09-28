@@ -64,7 +64,7 @@ const register = () => {
 			});
 
 			await setActive({ session: completeSignUp.createdSessionId });
-            routerNav.push('/(tabs)/home')
+            routerNav.back()
 		} catch (err: any) {
 			alert(err.errors[0].message);
 		} finally {
@@ -94,9 +94,10 @@ const register = () => {
 							value={code}
 							placeholder="Code..."
 							onChangeText={setCode}
+                            style={{color: Colors.yellow}}
 						/>
 					</View>
-					<Button onPress={onPressVerify} title="Verify Email" color={'#6c47ff'}></Button>
+					<Button onPress={onPressVerify} title="Verify Email" color={Colors.yellow}></Button>
 				</>)}
             </View>
         </View>
