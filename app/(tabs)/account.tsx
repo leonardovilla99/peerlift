@@ -21,6 +21,10 @@ const account = () => {
         router.push('/settings/username')
     }
 
+    const locationPage = () => {
+        router.push('/settings/locationSet')
+    }
+
     const onCaptureImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -73,6 +77,13 @@ const account = () => {
                                 <Text style={[styleGeneral.settingsCateg]}>Username</Text>
                                 <View style={styleGeneral.settingLine}>
                                     <Text style={[styleGeneral.settingsSub]}>change your username</Text>
+                                    <Ionicons name='chevron-forward' size={20} color={Colors.almostWhite}/>
+                                </View>
+                            </TouchableOpacity>
+                            <TouchableOpacity style={styleGeneral.settingLine} onPress={() => locationPage()}>
+                                <Text style={[styleGeneral.settingsCateg]}>Destination</Text>
+                                <View style={styleGeneral.settingLine}>
+                                    <Text style={[styleGeneral.settingsSub]}>change your destination</Text>
                                     <Ionicons name='chevron-forward' size={20} color={Colors.almostWhite}/>
                                 </View>
                             </TouchableOpacity>

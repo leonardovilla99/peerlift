@@ -75,6 +75,10 @@ function RootLayoutNav() {
             headerTitle: "Username",
             headerShown: false
         }}/>
+        <Stack.Screen name="settings/locationSet" options={{
+            headerTitle: "Location",
+            headerShown: false
+        }}/>
     </Stack>
   );
 }
