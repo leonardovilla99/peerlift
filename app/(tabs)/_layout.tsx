@@ -3,7 +3,7 @@ import {StyleSheet,View} from 'react-native'
 import { Tabs } from 'expo-router'
 import Colors from '@/constants/Colors'
 
-import { FontAwesome, MaterialCommunityIcons, Ionicons } from '@expo/vector-icons'
+import { FontAwesome, MaterialCommunityIcons, Ionicons, FontAwesome5 } from '@expo/vector-icons'
 
 
 const _layout = () => {
@@ -27,7 +27,7 @@ const _layout = () => {
         }}/>
         <Tabs.Screen name='home' options={{
             tabBarIcon: ({color,size}) => 
-                <Ionicons name='search' color={color} size={size}/>
+                <FontAwesome5 name='car-side' color={color} size={size}/>
         }}/>
         <Tabs.Screen name='account' options={{
             tabBarIcon: ({color,size}) => 
