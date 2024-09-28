@@ -2,7 +2,7 @@ import { SplashScreen, Stack, router } from 'expo-router';
 import { useEffect } from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
 import * as SecureStore from 'expo-secure-store';
-import { ClerkProvider, useAuth } from '@clerk/clerk-expo';
+import { ClerkProvider, SignedIn, useAuth } from '@clerk/clerk-expo';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
@@ -35,32 +35,37 @@ export const unstable_settings = {
 };
 
 // Prevent the splash screen from auto-hiding before asset loading is complete.
-SplashScreen.preventAutoHideAsync();
+// SplashScreen.preventAutoHideAsync();
 
 export default function RootLayout() {
   return (
     
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY!} tokenCache={tokenCache}>
-            
+            <GestureHandlerRootView style={{ flex: 1 }}>
                 <RootLayoutNav/>
-            
+            </GestureHandlerRootView>
         </ClerkProvider>
         );
 }
 
 function RootLayoutNav() {
   const {isLoaded,isSignedIn} = useAuth();
+  
   useEffect(() => {
-    if(isLoaded && !isSignedIn){
-        router.push("./(modal)/login")
-    }else if (isLoaded && isSignedIn){
-        router.push("./(tabs)/home")
+    if (isLoaded && !SignedIn) {
+        // Hide splash screen once loaded
+        // SplashScreen.hideAsync();
+        if (!isSignedIn) {
+            router.push("/(modal)/login");
+        } else {
+            router.push("/(tabs)/home");
+        }
     }
-  }, [isLoaded])
+  }, [isLoaded, isSignedIn]);
 
   return (
-    <Stack>
-        <Stack.Screen name="(tabs)" options={{ headerShown: false }} />
+    <Stack initialRouteName='home'>
+        <Stack.Screen name="(tabs)" options={{ headerShown: false }}/>
         <Stack.Screen name="(modal)/login" options={{
             presentation: 'modal',
             headerShown: false
