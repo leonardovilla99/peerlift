@@ -4,7 +4,7 @@ import Colors from "./Colors";
 export default StyleSheet.create({
     container:{
         flex:1,
-        backgroundColor: Colors.white,
+        backgroundColor: Colors.superBlack,
     },
     postContainer:{
         borderBottomLeftRadius:50,
@@ -20,19 +20,19 @@ export default StyleSheet.create({
         marginRight:30
     },
     title:{
-        color: Colors.sky,
+        color: Colors.yellow,
         fontSize:32,
         marginTop:10
     },
     subTitle:{
-        color: Colors.deapOcean,
+        color: Colors.almostWhite,
         fontSize: 16
     },
     text:{
         fontSize:12,
         textAlign: 'center',
         marginTop:20,
-        color: Colors.deapOcean,
+        color: Colors.almostWhite,
         lineHeight:20
     },
     cardView:{
@@ -47,12 +47,12 @@ export default StyleSheet.create({
     },
     textField:{
         borderColor: Colors.almostWhite,
-        color: Colors.deapOcean,
+        color: Colors.almostWhite,
         borderBottomWidth: 2,
         paddingVertical: 5,
     },
     botton:{
-        backgroundColor: Colors.sky,
+        backgroundColor: Colors.yellow,
         borderRadius: 18,
         marginVertical: 20,
         padding: 15,
@@ -62,7 +62,7 @@ export default StyleSheet.create({
         shadowOpacity:0.10,
     },
     bottonText:{
-        color: Colors.white,
+        color: Colors.superBlack,
         fontSize: 16,
         textAlign: 'center'
     },
@@ -109,7 +109,7 @@ export default StyleSheet.create({
         fontSize:12
     },
     filterTextActive:{
-        color: Colors.deapOcean,
+        color: Colors.yellow,
         textAlign:'center',
         fontSize:12
     },
@@ -130,7 +130,7 @@ export default StyleSheet.create({
         shadowOpacity: 0.1,
     },
     listingText:{
-        color: Colors.deapOcean,
+        color: Colors.yellow,
         fontSize:15,
         textAlign:'center',
         marginTop:5,
@@ -142,7 +142,7 @@ export default StyleSheet.create({
         paddingVertical:20,
     },
     listingTitle:{
-        color:Colors.deapOcean,
+        color:Colors.yellow,
         fontSize: 20,
         paddingVertical:20,
     },
@@ -171,7 +171,7 @@ export default StyleSheet.create({
         width: "75%",
     },
     ovalName:{
-        color: Colors.deapOcean
+        color: Colors.yellow
     },
     postDescrition:{
         marginTop:25
@@ -179,12 +179,12 @@ export default StyleSheet.create({
     postText:{
         fontSize:13,
         marginTop:5,
-        color: Colors.deapOcean,
+        color: Colors.yellow,
         lineHeight:20
     },
     searchText:{
         fontSize:13,
-        color: Colors.deapOcean,
+        color: Colors.yellow,
         textAlign: 'center',
         marginHorizontal:20,
         marginBottom:20
@@ -203,7 +203,7 @@ export default StyleSheet.create({
     },
     settingsCateg:{
         fontSize:15,
-        color: Colors.deapOcean
+        color: Colors.yellow
     },
     settingsSub:{
         fontSize:15,

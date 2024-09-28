@@ -85,7 +85,7 @@ const register = () => {
                         <TouchableOpacity style={styleGeneral.botton} onPress={onSignUpPress}>
                             <Text style={[styleGeneral.bottonText]}>REGISTER</Text>
                         </TouchableOpacity>
-                        <Text style={[styleGeneral.textGrey]}>Already have an account? <Link href="./(modals)/login" style={{color:Colors.deapOcean}}> Sign in</Link></Text>
+                        <Text style={[styleGeneral.textGrey]}>Already have an account? <Link href="/(modal)/login"> Sign in</Link></Text>
                     </View>
                 </>)}
                 {pendingVerification && (<>
