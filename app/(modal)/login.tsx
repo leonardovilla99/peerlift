@@ -1,7 +1,7 @@
-import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground } from 'react-native'
+import { View, Text, StyleSheet, Image, TouchableOpacity, ImageBackground, TextInput } from 'react-native'
 import React, { useState } from 'react'
 import { useWarmUpBrowser } from '@/hooks/useWarmUpBrowse'
-import { TextInput } from 'react-native-gesture-handler';
+import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
 import { useAuth, useOAuth, useSignIn } from '@clerk/clerk-expo';
 import { Link, useRouter, router } from 'expo-router';
@@ -38,20 +38,22 @@ const login = () => {
 	};
     
     return (
-        <View>
-            <View >
-                <Text>Welcome back!</Text>
-                <Text>Sign in to continue.</Text>
-                <TextInput autoCapitalize='none' placeholder='Email' value={emailAddress} onChangeText={setEmailAddress}/>
-                <TextInput autoCapitalize='none' placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry/>
-                <View>
-                    <TouchableOpacity onPress={onSignInPress}>
-                        <Text>LOGIN</Text>
-                    </TouchableOpacity>
-                    <Text>Don't have an account?</Text>
+        // <GestureHandlerRootView style={{ flex: 1 }}>
+            <View>
+                <View >
+                    <Text>Welcome back!</Text>
+                    <Text>Sign in to continue.</Text>
+                    <TextInput autoCapitalize='none' placeholder='Email' value={emailAddress} onChangeText={setEmailAddress}/>
+                    <TextInput autoCapitalize='none' placeholder='Password' value={password} onChangeText={setPassword} secureTextEntry/>
+                    <View>
+                        <TouchableOpacity onPress={onSignInPress}>
+                            <Text>LOGIN</Text>
+                        </TouchableOpacity>
+                        <Text>Don't have an account?</Text>
+                    </View>
                 </View>
             </View>
-        </View>
+        // </GestureHandlerRootView>
     )
 }
 

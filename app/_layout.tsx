@@ -22,8 +22,7 @@ const tokenCache = {
         return;
       }
     },
-};
-   
+}; 
 
 export {
   // Catch any errors thrown by the Layout component.
@@ -42,9 +41,9 @@ export default function RootLayout() {
   return (
     
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY!} tokenCache={tokenCache}>
-            <GestureHandlerRootView style={{ flex: 1 }}>
+            
                 <RootLayoutNav/>
-            </GestureHandlerRootView>
+            
         </ClerkProvider>
         );
 }
@@ -54,8 +53,8 @@ function RootLayoutNav() {
   useEffect(() => {
     if(isLoaded && !isSignedIn){
         router.push("./(modal)/login")
-    }else{
-        // router.push("/(tabs)/home")
+    }else if (isLoaded && isSignedIn){
+        router.push("./(tabs)/home")
     }
   }, [isLoaded])
 
