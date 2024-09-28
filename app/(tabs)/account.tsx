@@ -17,6 +17,10 @@ const account = () => {
         router.push('/(modal)/login')
     }
 
+    const usernamePage = () => {
+        router.push('/settings/username')
+    }
+
     const onCaptureImage = async () => {
         const result = await ImagePicker.launchImageLibraryAsync({
             mediaTypes: ImagePicker.MediaTypeOptions.Images,
@@ -41,22 +45,19 @@ const account = () => {
         <ScrollView style={{backgroundColor: Colors.superBlack}}>
             <SafeAreaView style={[styleGeneral.safeContainer]}>
                 <View style={{flexDirection:'row', justifyContent:'space-between', marginTop:15}}>
-                        {user?.firstName != null && (
-                            <View style={{flexDirection:'column', width:'90%'}}>
-                                <Image source={{uri: user?.imageUrl}} style={styleGeneral.avatar}/>
-                                <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>{user.firstName}.</Text>
-                            </View>
-                        )}
-                        {user?.firstName == null && (
-                            <View style={{flexDirection:'column', width:'90%'}}>
-                                <Image source={{uri: user?.imageUrl}} style={styleGeneral.avatar}/>
-                                <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>Me.</Text>
-                            </View>
-                        )}
-                        <Link href={'/'} style={{marginTop:20}}>
-                            <Ionicons name='settings-sharp' color={Colors.almostWhite} size={20}/>
-                        </Link>
-                    </View>
+                    {user?.firstName != null && (
+                        <View style={{flexDirection:'column', width:'90%'}}>
+                            <Image source={{uri: user?.imageUrl}} style={styleGeneral.avatar}/>
+                            <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>{user.firstName}.</Text>
+                        </View>
+                    )}
+                    {user?.firstName == null && (
+                        <View style={{flexDirection:'column', width:'90%'}}>
+                            <Image source={{uri: user?.imageUrl}} style={styleGeneral.avatar}/>
+                            <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>Me.</Text>
+                        </View>
+                    )}
+                </View>
                 <View>
                     {user != null &&
                         <>
@@ -69,7 +70,7 @@ const account = () => {
                                     <Ionicons name='chevron-forward' size={20} color={Colors.almostWhite}/>
                                 </View>
                             </TouchableOpacity>
-                            <TouchableOpacity style={styleGeneral.settingLine} onPress={() => null}>
+                            <TouchableOpacity style={styleGeneral.settingLine} onPress={() => usernamePage()}>
                                 <Text style={[styleGeneral.settingsCateg]}>Username</Text>
                                 <View style={styleGeneral.settingLine}>
                                     <Text style={[styleGeneral.settingsSub]}>change your username</Text>

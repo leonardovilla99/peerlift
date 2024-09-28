@@ -71,6 +71,10 @@ function RootLayoutNav() {
             presentation: 'modal',
             headerShown: false
         }}/>
+        <Stack.Screen name="settings/username" options={{
+            headerTitle: "Username",
+            headerShown: false
+        }}/>
     </Stack>
   );
 }
