@@ -1,6 +1,6 @@
 /* eslint-disable react/no-direct-mutation-state */
-import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView, StatusBar, Button, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView, StatusBar, Button, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
 import { useAuth } from '@clerk/clerk-expo';
 import { Link, router, useRouter } from 'expo-router';
 import Colors from '@/constants/Colors';

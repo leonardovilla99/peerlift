@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
-import { sendMessage, getMessages } from "@/scripts/firebaseService"; // Assuming the functions above are in firebaseService.js
-import { useAuth } from "@clerk/clerk-expo";
+import { sendMessage, getMessages } from "@/scripts/firebaseService";
+import { addUserToDatabase } from "@/scripts/saveMessage"
+import { useAuth, useUser } from "@clerk/clerk-expo";
 import { router, useLocalSearchParams } from "expo-router";
 import { SafeAreaView, TouchableOpacity, View, Text, TextInput, ScrollView } from "react-native";
 import Colors from "@/constants/Colors";
@@ -18,6 +19,7 @@ interface Message {
 
 const MessagingPage = () => {
     const { userId } = useAuth();
+    const {user} = useUser();
     const {id} = useLocalSearchParams<{ id:string }>();
     const [receiverName, setReceiverName] = useState();
     const [messageInput, setMessageInput] = useState("");
@@ -39,6 +41,8 @@ const MessagingPage = () => {
     const handleSendMessage = () => {
         if (messageInput.trim()) {
         sendMessage(userId, id, messageInput);
+        addUserToDatabase(userId, user?.firstName, id, receiverName)
+        addUserToDatabase(id, receiverName, userId, user?.firstName)
         setMessageInput(""); // Clear the input after sending the message
         }
     };

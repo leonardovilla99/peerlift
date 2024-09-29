@@ -33,7 +33,7 @@ const post = () => {
     },[])
 
     //check if location is enable or not
-    const checkIfLocationEnabled= async ()=>{
+    const checkIfLocationEnabled = async ()=>{
         let enabled = await Location.hasServicesEnabledAsync();       //returns true or false
         if(!enabled){                     //if not enable 
         Alert.alert('Location not enabled', 'Please enable your Location', [
