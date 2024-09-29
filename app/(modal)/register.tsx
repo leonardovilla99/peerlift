@@ -8,8 +8,6 @@ import { Link, useRouter } from 'expo-router';
 import styleGeneral from '@/constants/styleGeneral';
 import Colors from '@/constants/Colors';
 
-
-
 const register = () => {
     useWarmUpBrowser();
     const routerNav = useRouter();

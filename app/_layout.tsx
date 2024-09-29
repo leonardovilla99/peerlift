@@ -1,3 +1,4 @@
+/* eslint-disable react/no-direct-mutation-state */
 import { SplashScreen, Stack, router, useRouter } from 'expo-router';
 import { useEffect } from 'react';
 import { StatusBar, useColorScheme } from 'react-native';
@@ -5,7 +6,9 @@ import * as SecureStore from 'expo-secure-store';
 import { ClerkProvider, SignedIn, useAuth } from '@clerk/clerk-expo';
 import { GestureHandlerRootView } from 'react-native-gesture-handler';
 
-const CLERK_PUBLISHABLE_KEY = process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
+const CLERK_PUBLISHABLE_KEY = process.env.NODE_ENV === 'production'
+  ? process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY_LIVE
+  : process.env.EXPO_PUBLIC_CLERK_PUBLISHABLE_KEY;
 
 const tokenCache = {
     async getToken(key: string) {
@@ -39,7 +42,6 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   return (
-    
         <ClerkProvider publishableKey={CLERK_PUBLISHABLE_KEY!} tokenCache={tokenCache}>
             <GestureHandlerRootView style={{ flex: 1 }}>
                 <RootLayoutNav/>

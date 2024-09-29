@@ -36,12 +36,12 @@ export default StyleSheet.create({
         lineHeight:20
     },
     cardView:{
-        backgroundColor: '#fff',
-        marginVertical:25,
-        paddingBottom:25,
-        borderRadius:30,
+        backgroundColor: Colors.superBlack,
+        marginVertical:10,
+        padding:25,
+        borderRadius:20,
         shadowOffset: { width: 0, height: 4 },
-        shadowColor: '#000',
+        shadowColor: '#fff',
         shadowRadius:10,
         shadowOpacity:0.10,
     },

@@ -11,6 +11,7 @@ import { router } from 'expo-router';
 import Colors from '@/constants/Colors';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as Location from 'expo-location'
+import {Picker} from '@react-native-picker/picker';
 
 const post = () => {
     // Initialization
@@ -22,9 +23,9 @@ const post = () => {
     const userId = user?.id as string
     const userName = user?.firstName as string
 
-    const [destination, setDestination] = useState('');
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
+    const [selectedDestination, setSelectedDestination] = useState('fiu-mmc');
 
     const [displayCurrentAddress, setDisplayCurrentAddress] = useState('Location Loading.....');
     const [locationServicesEnabled, setLocationServicesEnabled] = useState(false)
@@ -82,7 +83,7 @@ const post = () => {
             'name' : userName,
             'latitude' : latitude,
             'longitude' : longitude,
-            'destination' : destination,
+            'destination' : selectedDestination,
         }
 
         set(ref(database, 'users/' + userId), data).then( () => {
@@ -100,7 +101,15 @@ const post = () => {
                 <View style={styleGeneral.safeContainer}>
                     <Text style={[styleGeneral.title, {textAlign:'center'}]}>One more thing.</Text>
                     <Text style={[styleGeneral.settingDesc, {marginBottom:10}]}>Before starting enter your college destination.</Text>
-                    <TextInput placeholder='Destination' style={[styleGeneral.textField, {marginVertical:10, textAlign:'center'}]} value={destination} onChangeText={setDestination} placeholderTextColor={Colors.almostWhite}></TextInput>
+                    <Picker
+                        selectedValue={selectedDestination}
+                        onValueChange={(itemValue, itemIndex) =>
+                            setSelectedDestination(itemValue)
+                        }>
+                        <Picker.Item label="FIU - MMC" value="fiu-mmc" color={Colors.almostWhite}/>
+                        <Picker.Item label="FIU - BBC" value="fiu-bbc" color={Colors.almostWhite}/>
+                        <Picker.Item label="FIU - I75" value="fiu-i75" color={Colors.almostWhite}/>
+                    </Picker>
                     <Text style={[styleGeneral.settingDesc, {marginBottom:10}]}>This destination can always be changed inside your account.</Text>
                 </View>
                 <View style={styleGeneral.safeContainer}>
