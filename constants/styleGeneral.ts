@@ -232,5 +232,22 @@ export default StyleSheet.create({
         width:75,
         height:75,
         borderRadius:50,
+    },
+    myMessage:{
+        backgroundColor: Colors.yellow,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomLeftRadius: 15,
+    },
+    otherMessage:{
+        backgroundColor: Colors.almostWhite,
+        borderTopLeftRadius: 15,
+        borderTopRightRadius: 15,
+        borderBottomRightRadius: 15,
+    },
+    generalMessage:{
+        marginVertical:10,
+        paddingHorizontal: 15,
+        paddingVertical: 5
     }
 })

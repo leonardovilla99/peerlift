@@ -81,6 +81,10 @@ function RootLayoutNav() {
             headerTitle: "Location",
             headerShown: false
         }}/>
+        <Stack.Screen name="message/[id]" options={{
+            headerTitle: "message",
+            headerShown: false
+        }}/>
     </Stack>
   );
 }

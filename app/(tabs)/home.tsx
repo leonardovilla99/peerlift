@@ -2,14 +2,13 @@
 import { View, Text, SafeAreaView, StyleSheet, Image, ScrollView, StatusBar, Button, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useAuth } from '@clerk/clerk-expo';
-import { Link, router } from 'expo-router';
+import { Link, router, useRouter } from 'expo-router';
 import Colors from '@/constants/Colors';
 import styleGeneral from '@/constants/styleGeneral';
 
 import { getDatabase, ref, set, push, get, onValue } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import { firebaseConfig} from '@/firebase/firebase'
-import { convertDistance } from 'geolib';
 import sortUsersByDistance from '@/scripts/getDistance'
 
 interface UserDistance {
@@ -26,10 +25,14 @@ const home = () => {
     const app = initializeApp(firebaseConfig);
     const database = getDatabase();
 
+    // Nav initialization
+    const routerNav = useRouter();
+
     // Create states
     const [existFirebase, setFirebase] = useState(false);
     const [myLat, setMyLat] = useState(0);
     const [myLng, setMyLng] = useState(0);
+    const [myDest, setMyDest] = useState();
     const [userDistances, setUserDistances] = useState<UserDistance[]>([]);
 
     useEffect(() => {
@@ -44,6 +47,7 @@ const home = () => {
         const usersData = snapshot.val();
         setMyLat(usersData.latitude);
         setMyLng(usersData.longitude)
+        setMyDest(usersData.destination)
     }
     }).catch((error) => {
         console.error("Error checking or writing user data:", error);
@@ -51,45 +55,38 @@ const home = () => {
 
     const tempUserDistances: { latitude: number; longitude: number; userId: string; name: string;}[] = [];
 
-
     useEffect(() => {
         const postsRef = ref(database, "users/");
         const unsubscribe = onValue(postsRef, (snapshot) => {
-          const data = snapshot.val();
-          Object.keys(data).forEach((userId) => {
-            const user = data[userId];
-            const { latitude, longitude, name } = user;
-
-            // Check if latitude and longitude exist
-            if (latitude && longitude) {
-                // Calculate driving distance using your distance calculation function
+            const data = snapshot.val();
+            Object.keys(data).forEach((userIdT) => {
+                const user = data[userIdT];
+                const { latitude, longitude, name, destination } = user;
                 
-
-                // Add the processed user data to the temporary array
-                tempUserDistances.push({
-                    latitude,
-                    longitude,
-                    userId,
-                    name
+                if (userId !== userIdT && destination == myDest) {
+                    // Check if latitude and longitude exist
+                    if (latitude && longitude) {
+                        // Add the processed user data to the temporary array
+                        tempUserDistances.push({
+                            latitude,
+                            longitude,
+                            userId: userIdT,
+                            name
+                        });
+                    } else {
+                        console.error(`User ${userId} has missing latitude or longitude`);
+                    }
+                }
                 });
-                
-            } else {
-                console.error(`User ${userId} has missing latitude or longitude`);
-            }
-            });
-            setUserDistances(sortUsersByDistance(tempUserDistances, myLat, myLng));
+                setUserDistances(sortUsersByDistance(tempUserDistances, myLat, myLng));
         });
         
         return () => unsubscribe();
     }, [tempUserDistances]);
 
-    // useEffect(() => {
-    //     for (let i = 0; i < userDistances.length; i++) {
-    //         const user = userDistances[i]
-            
-    //         //console.log(drivingDistance);
-    //     }
-    // },[]);
+    const openMsg = (id: string) => {
+        routerNav.push(`/message/${id}`);
+    }
     
     return (
         <ScrollView showsVerticalScrollIndicator={false} style={{backgroundColor: Colors.superBlack}} bounces={false}>
@@ -101,7 +98,7 @@ const home = () => {
                 </>}
                 {existFirebase && <View style={{paddingTop:20}}>
                     {userDistances.map((user) => (
-                        <TouchableOpacity key={user.userId}>
+                        <TouchableOpacity key={user.userId} onPress={()=>{openMsg(user.userId)}}>
                             <View style={styleGeneral.cardView}>
                                 <Text style={{color:Colors.almostWhite, fontWeight: 600, fontSize:16}}>{user.name}</Text>
                                 <Text style={{color:Colors.yellow}}>Distance: {user.distance.toFixed(1)} miles</Text>

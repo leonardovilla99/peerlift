@@ -12,12 +12,9 @@ import Colors from '@/constants/Colors';
 import { ScrollView } from 'react-native-gesture-handler';
 import * as Location from 'expo-location'
 import {Picker} from '@react-native-picker/picker';
+import { database, app } from '@/firebase/firebase';
 
 const post = () => {
-    // Initialization
-    const app = initializeApp(firebaseConfig);
-    const database = getDatabase();
-
     // User
     const { user } = useUser();
     const userId = user?.id as string
