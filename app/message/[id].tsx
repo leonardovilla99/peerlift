@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { sendMessage, getMessages } from "@/scripts/firebaseService"; // Assuming the functions above are in firebaseService.js
 import { useAuth } from "@clerk/clerk-expo";
 import { router, useLocalSearchParams } from "expo-router";
-import { SafeAreaView, TouchableOpacity, View, Text, TextInput } from "react-native";
+import { SafeAreaView, TouchableOpacity, View, Text, TextInput, ScrollView } from "react-native";
 import Colors from "@/constants/Colors";
 import styleGeneral from "@/constants/styleGeneral";
 import { Ionicons } from "@expo/vector-icons";
@@ -48,15 +48,15 @@ const MessagingPage = () => {
             <TouchableOpacity onPress={() => router.back()}>
                 <Ionicons name='chevron-back' size={28} color={Colors.almostWhite}></Ionicons>
             </TouchableOpacity>
-            <Text style={[styleGeneral.title, {marginTop:20}]}>Chat with:{receiverName}</Text>
-            <View>
+            <Text style={[styleGeneral.titleMessages]}>{receiverName}</Text>
+            <ScrollView>
                 {messages.map((msg, index) => (
                     <View key={index} style={[msg.from === userId ? styleGeneral.myMessage : styleGeneral.otherMessage, styleGeneral.generalMessage]}>
                         <Text style={{color:Colors.superBlack, fontSize:15}}>{msg.message}</Text>
                         <Text style={{color:Colors.superBlack, fontSize:10}}>{new Date(msg.timestamp).toLocaleTimeString()}</Text>
                     </View>
                 ))}
-            </View>
+            </ScrollView>
             <View>
                 <TextInput
                     value={messageInput}

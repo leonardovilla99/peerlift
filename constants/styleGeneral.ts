@@ -249,5 +249,12 @@ export default StyleSheet.create({
         marginVertical:10,
         paddingHorizontal: 15,
         paddingVertical: 5
+    },
+    titleMessages:{
+       color: Colors.almostWhite,
+       fontSize: 30,
+       fontWeight:600,
+       textAlign: 'center',
+       marginBottom:20
     }
 })
