@@ -50,22 +50,20 @@ const account = () => {
             <SafeAreaView style={[styleGeneral.safeContainer]}>
                 <View style={{flexDirection:'row', justifyContent:'space-between', marginTop:15}}>
                     {user?.firstName != null && (
-                        <View style={{flexDirection:'column', width:'90%'}}>
+                        <View style={{flexDirection:"column", width:'100%', alignItems:'center'}}>
                             <Image source={{uri: user?.imageUrl}} style={styleGeneral.avatar}/>
-                            <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>{user.firstName}.</Text>
+                            <Text style={[styleGeneral.title,{textAlign:'center'}]}  ellipsizeMode="tail" numberOfLines={1}>{user.firstName}.</Text>
                         </View>
                     )}
                     {user?.firstName == null && (
-                        <View style={{flexDirection:'column', width:'90%'}}>
-                            <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>Me.</Text>
-                        </View>
+                        <Text style={[styleGeneral.title]}  ellipsizeMode="tail" numberOfLines={1}>Me.</Text>
                     )}
                 </View>
                 <View>
                     {user != null &&
                         <>
-                        <View style={styleGeneral.settingBlock}>
-                            <Text>Profile</Text>
+                        <View style={[styleGeneral.cardView, {marginVertical:20,}]}>
+                            <Text style={[styleGeneral.subTitle, {marginBottom:15, textAlign:'center', fontWeight: 600, fontSize:16}]}>Change your settings here!</Text>
                             <TouchableOpacity style={styleGeneral.settingLine} onPress={() => onCaptureImage()}>
                                 <Text style={[styleGeneral.settingsCateg]}>Profile Image</Text>
                                 <View style={styleGeneral.settingLine}>

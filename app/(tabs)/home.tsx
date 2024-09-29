@@ -93,6 +93,7 @@ const home = () => {
             <StatusBar barStyle="light-content" backgroundColor="#000000" />
             <SafeAreaView style={[styleGeneral.safeContainer]}>
                 <Text style={[styleGeneral.title, {marginTop:20}]}>Meet your ride.</Text>
+                <Image source={require('@/assets/images/car.png')} style={{width:'100%',height:"60%"}}/>
                 {!existFirebase && <>
                     <Text style={[styleGeneral.settingDesc, {textAlign:'left'}]}>Please add a destination to your travel <Link href="/settings/locationSet" style={{color:Colors.yellow}}>here!</Link></Text>
                 </>}

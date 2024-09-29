@@ -36,7 +36,7 @@ export default StyleSheet.create({
         lineHeight:20
     },
     cardView:{
-        backgroundColor: Colors.superBlack,
+        backgroundColor: Colors.almostBlack,
         marginVertical:10,
         padding:25,
         borderRadius:20,
@@ -199,7 +199,7 @@ export default StyleSheet.create({
     settingLine:{
         flexDirection:'row',
         justifyContent: 'space-between',
-        marginVertical:2
+        marginVertical:4
     },
     settingsCateg:{
         fontSize:15,
